@@ -5,4 +5,17 @@
     <string name="calcular">Calcular</string>
     <string name="todo">TODO</string>
     <string name="digite_valores_validos">Digite valores validos</string>
+    <string name="todo1">TODO</string>
+    <string name="preco">Preço</string>
+    <string name="bateria">Bateria</string>
+    <string name="potencia">Potencia</string>
+    <string name="recarga">Recarga</string>
+    <string name="r_300_000_00">R$ 300.000.00</string>
+    <string name="_300_kw_h">300 KW/h</string>
+    <string name="_300_cv">300 CV</string>
+    <string name="_23_min">23 min</string>
+    <string name="eletric_car">Eletric Car</string>
+    <string name="carros">Carros</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="todo2">TODO</string>
 </resources>

@@ -42,10 +42,10 @@
             android:inputType="numberDecimal"
             android:minHeight="48dp"
             android:textAlignment="center"
-            android:textColorHint="#757575"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_preco_autonomia" />
+            app:layout_constraintTop_toBottomOf="@+id/et_preco_autonomia"
+            tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/btn_CalculoAutonomia"
