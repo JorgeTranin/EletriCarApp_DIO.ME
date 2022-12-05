@@ -167,6 +167,17 @@
             app:layout_constraintTop_toTopOf="@+id/tv_recarga"
             app:layout_constraintVertical_bias="0.0" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.768"
+            app:layout_constraintStart_toEndOf="@+id/iv_carro11"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_star_border_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
