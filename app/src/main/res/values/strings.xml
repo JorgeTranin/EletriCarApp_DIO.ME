@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">EletriCarApp</string>
+    
     <string name="preco_Km">Preço Kw/h</string>
     <string name="km_percorrido">KM percorrido</string>
     <string name="calcular">Calcular</string>
@@ -18,4 +19,7 @@
     <string name="carros">Carros</string>
     <string name="favoritos">Favoritos</string>
     <string name="todo2">TODO</string>
+    =======
+    >>>>>>> parent of 32031db (Implementação tela de CalculoAutonomia.kt e apresentação do calculo
+    para o usuario)
 </resources>
