@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EletriCarApp</string>
+    <string name="preco_Km">Preço Kw/h</string>
+    <string name="km_percorrido">KM percorrido</string>
+    <string name="calcular">Calcular</string>
+    <string name="todo">TODO</string>
+    <string name="digite_valores_validos">Digite valores validos</string>
 </resources>
