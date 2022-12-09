@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -47,137 +48,19 @@
         app:layout_constraintStart_toEndOf="@+id/tv_carros"
         app:layout_constraintTop_toTopOf="@+id/tv_carros" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:background="#D8D7D7"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_listaDeCarros"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_carros">
+        app:layout_constraintTop_toBottomOf="@+id/tv_carros"
+        tools:listitem="@layout/carro_item">
 
-
-        <ImageView
-            android:id="@+id/iv_carro11"
-            android:layout_width="244dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="4dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.118"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/car"/>
-
-        <TextView
-            android:id="@+id/tv_preco"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/preco"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_carro11" />
-
-        <TextView
-            android:id="@+id/tv_bateria"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/bateria"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_preco" />
-
-        <TextView
-            android:id="@+id/tv_potencia"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/potencia"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bateria" />
-
-        <TextView
-            android:id="@+id/tv_recarga"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/recarga"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_potencia" />
-
-        <TextView
-            android:id="@+id/tv_preco_valor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/r_300_000_00"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.157"
-            app:layout_constraintStart_toEndOf="@+id/tv_preco"
-            app:layout_constraintTop_toTopOf="@+id/tv_preco" />
-
-
-        <TextView
-            android:id="@+id/tv_bateria_valor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/_300_kw_h"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.146"
-            app:layout_constraintStart_toEndOf="@+id/tv_bateria"
-            app:layout_constraintTop_toTopOf="@+id/tv_bateria" />
-
-        <TextView
-            android:id="@+id/tv_potencia_valor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/_300_cv"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.131"
-            app:layout_constraintStart_toEndOf="@+id/tv_potencia"
-            app:layout_constraintTop_toTopOf="@+id/tv_potencia" />
-
-        <TextView
-            android:id="@+id/tv_recarga_valor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/_23_min"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.127"
-            app:layout_constraintStart_toEndOf="@+id/tv_recarga"
-            app:layout_constraintTop_toTopOf="@+id/tv_recarga"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.768"
-            app:layout_constraintStart_toEndOf="@+id/iv_carro11"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_star_border_24" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

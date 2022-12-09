@@ -5,14 +5,14 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.eletricarapp.databinding.ActivityTestesBinding
+import com.example.eletricarapp.databinding.ActivityCalculoAutonomiaBinding
 
 class CalculoAutonomia : AppCompatActivity() {
-    lateinit var binding: ActivityTestesBinding
+    lateinit var binding: ActivityCalculoAutonomiaBinding
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        binding = ActivityTestesBinding.inflate(layoutInflater)
+        binding = ActivityCalculoAutonomiaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
