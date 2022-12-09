@@ -1,9 +1,10 @@
-package com.example.eletricarapp
+package com.example.eletricarapp.UI
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletricarapp.Adapter.CarAdapter
+import com.example.eletricarapp.data.CarFactory
 import com.example.eletricarapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setupList(){
         listaCarros = binding.rvListaDeCarros
-        var dados = arrayOf("Preço", "bateria", "Potencia", "recarga")
+        var dados = CarFactory.list
 
         val adapter = CarAdapter(dados)
         listaCarros.adapter = adapter
