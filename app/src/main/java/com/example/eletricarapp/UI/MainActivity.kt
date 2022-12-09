@@ -3,13 +3,17 @@ package com.example.eletricarapp.UI
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.eletricarapp.Adapter.CarAdapter
+import com.example.eletricarapp.Adapter.TabAdapter
 import com.example.eletricarapp.data.CarFactory
 import com.example.eletricarapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var listaCarros: RecyclerView
+    lateinit var viewPager: ViewPager2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -17,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         setupList()
+        setupTabs()
 
         /*binding.ivCarro11.setOnClickListener {
             val intent = Intent(this, CalculoAutonomia::class.java)
@@ -32,5 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = CarAdapter(dados)
         listaCarros.adapter = adapter
+    }
+    fun setupTabs(){
+        val tab = binding.tabLayout
+        val tabAdapter = TabAdapter(this)
+        viewPager.adapter = tabAdapter
+
     }
 }
