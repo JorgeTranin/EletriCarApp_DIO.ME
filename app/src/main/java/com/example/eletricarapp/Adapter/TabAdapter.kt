@@ -3,8 +3,8 @@ package com.example.eletricarapp.Adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.eletricarapp.UI.CarFragment
-import com.example.eletricarapp.UI.FavoriteFragment
+import com.example.eletricarapp.ui.CarFragment
+import com.example.eletricarapp.ui.FavoriteFragment
 
 
 class TabAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {

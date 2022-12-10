@@ -1,13 +1,9 @@
-package com.example.eletricarapp.UI
+package com.example.eletricarapp.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.eletricarapp.Adapter.CarAdapter
 import com.example.eletricarapp.Adapter.TabAdapter
-import com.example.eletricarapp.data.CarFactory
 import com.example.eletricarapp.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
 

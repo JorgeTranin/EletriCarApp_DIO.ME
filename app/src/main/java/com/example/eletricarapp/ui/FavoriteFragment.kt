@@ -1,4 +1,4 @@
-package com.example.eletricarapp.UI
+package com.example.eletricarapp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

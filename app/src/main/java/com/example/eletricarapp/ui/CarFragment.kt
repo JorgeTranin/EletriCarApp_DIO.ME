@@ -1,4 +1,4 @@
-package com.example.eletricarapp.UI
+package com.example.eletricarapp.ui
 
 import android.content.Intent
 import android.os.Bundle

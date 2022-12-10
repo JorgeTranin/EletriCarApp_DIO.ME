@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".UI.CalculoAutonomia">
+        tools:context=".ui.CalculoAutonomia">
 
         <ImageButton
             android:id="@+id/btn_close"
