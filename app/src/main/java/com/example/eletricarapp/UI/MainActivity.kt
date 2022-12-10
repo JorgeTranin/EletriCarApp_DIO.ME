@@ -1,5 +1,6 @@
 package com.example.eletricarapp.UI
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         setupView()
         setupTabs()
-        setupListeners()
 
     }
 fun setupView(){
@@ -67,8 +67,6 @@ fun setupView(){
         })
 
     }
-    fun setupListeners(){
 
 
-    }
 }
