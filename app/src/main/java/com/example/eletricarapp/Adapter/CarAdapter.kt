@@ -3,6 +3,7 @@ package com.example.eletricarapp.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletricarapp.R
@@ -24,6 +25,7 @@ class CarAdapter(private val carros: List<Carro>): RecyclerView.Adapter<CarAdapt
         holder.potencia.text = carros[position].potencia
         holder.recarga.text = carros[position].recarga
 
+
     }
 
     //metodo responsavel por pegar o tamanho da lista
@@ -35,6 +37,7 @@ class CarAdapter(private val carros: List<Carro>): RecyclerView.Adapter<CarAdapt
         val bateria: TextView
         val potencia: TextView
         val recarga: TextView
+        val photo: ImageView
 
 
         init {
@@ -42,6 +45,7 @@ class CarAdapter(private val carros: List<Carro>): RecyclerView.Adapter<CarAdapt
             bateria = view.findViewById(R.id.tv_bateria_valor)
             potencia = view.findViewById(R.id.tv_potencia_valor)
             recarga = view.findViewById(R.id.tv_recarga_valor)
+            photo = view.findViewById(R.id.iv_carro1)
         }
     }
 

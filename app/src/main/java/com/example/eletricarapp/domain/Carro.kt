@@ -8,5 +8,5 @@ data class Carro(
     val potencia: String,
     val recarga: String,
     //PARA PODER COLOCAR AS FOTOS DINAMICAMENTE NA LISTA
-    val urlFoto: String
+    val urlPhoto: String
 )
