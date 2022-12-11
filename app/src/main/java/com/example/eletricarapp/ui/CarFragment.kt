@@ -14,15 +14,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletricarapp.Adapter.CarAdapter
 import com.example.eletricarapp.R
+import com.example.eletricarapp.data.CarsAPI
 import com.example.eletricarapp.domain.Carro
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONTokener
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -34,6 +41,7 @@ class CarFragment : Fragment() {
     lateinit var progress: ProgressBar
     lateinit var ivEmpityState:ImageView
     lateinit var tv_no_wifi:TextView
+    lateinit var carsApi: CarsAPI
 
 
     var carrosArray: ArrayList<Carro> = ArrayList()
@@ -48,6 +56,7 @@ class CarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRetrofit()
         setupView(view)
         setupListeners()
 
@@ -56,11 +65,44 @@ class CarFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (checkForInternet(context)){
-
-            callService()
+            //callService() //outra forma de chamar serviço
+            getAllcars()
         }else{
             empityState()
         }
+    }
+
+    fun setupRetrofit(){
+        val retrofit = Retrofit.Builder().baseUrl("https://igorbag.github.io/cars-api/")
+            .addConverterFactory(GsonConverterFactory.create()).build()
+
+        carsApi = retrofit.create(CarsAPI::class.java)
+
+
+    }
+
+
+    fun getAllcars(){
+        carsApi.getAllCars().enqueue(object : Callback<List<Carro>>{
+            override fun onResponse(call: Call<List<Carro>>, response: Response<List<Carro>>) {
+                if (response.isSuccessful){
+                    progress.isVisible = false
+                    listaCarros.isVisible = true
+                    ivEmpityState.isVisible = false
+                    tv_no_wifi.isVisible = false
+                    response.body()?.let {
+                        setupList(it)
+                    }
+
+                }else{
+                    Toast.makeText(context, "Algo deu errado tente mais tarde", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Carro>>, t: Throwable) {
+                Toast.makeText(context, "Algo deu errado tente mais tarde", Toast.LENGTH_LONG).show()            }
+
+        })
     }
     fun empityState(){
         progress.isVisible = false
@@ -84,9 +126,9 @@ class CarFragment : Fragment() {
         MyTask().execute("https://igorbag.github.io/cars-api/cars.json")
 
     }
-    fun setupList(){
+    fun setupList(lista: List<Carro>){
 
-        val adapter = CarAdapter(carrosArray)
+        val adapter = CarAdapter(lista)
         listaCarros.adapter = adapter
 
     }
@@ -123,7 +165,7 @@ class CarFragment : Fragment() {
         }
     }
 
-    // Classe interna para sincronizar com o json que contem os dados da lista
+    // Classe interna para sincronizar com o json que contem os dados da lista, metodo sem abstração
     inner class MyTask : AsyncTask<String, String, String>() {
 
         override fun onPreExecute() {
@@ -197,7 +239,7 @@ class CarFragment : Fragment() {
                 ivEmpityState.isVisible = false
                 tv_no_wifi.isVisible = false
 
-                setupList()
+                //setupList()
 
             }catch (ex: Exception){
                 Log.e("Erro ->", ex.message.toString())
