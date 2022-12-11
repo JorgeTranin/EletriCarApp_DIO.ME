@@ -85,9 +85,21 @@ class CarFragment : Fragment() {
                 urlConnection = urlBase.openConnection() as HttpURLConnection
                 urlConnection.connectTimeout = 60000
                 urlConnection.readTimeout = 60000
+                urlConnection.setRequestProperty(
+                    "Accept",
+                    "application/jason"
+                )
 
-                var response = urlConnection.inputStream.bufferedReader().use { it.readText() }
-                publishProgress(response)
+                // validação para analisar se a resposta esta ok
+                val responseCode = urlConnection.responseCode
+                if (responseCode == HttpURLConnection.HTTP_OK){
+
+                    var response = urlConnection.inputStream.bufferedReader().use { it.readText() }
+                    publishProgress(response)
+                }else{
+                    Log.e("erro", "Serviço indisponivel no momento...")
+                }
+
             }catch (ex: Exception){
                 Log.e("erro", "Erro ao realizar processamento")
             }finally {
