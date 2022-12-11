@@ -46,4 +46,31 @@
         app:layout_constraintVertical_bias="0.499"
         tools:visibility="visible" />
 
+    <ImageView
+        android:id="@+id/iv_empityState"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_baseline_signal_wifi_connected_no_internet_4_24"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_listaDeCarros"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.301"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_no_wifi"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/internet_no_disponivel"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/iv_empityState"
+        app:layout_constraintStart_toStartOf="@+id/iv_empityState"
+        app:layout_constraintTop_toBottomOf="@+id/iv_empityState" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

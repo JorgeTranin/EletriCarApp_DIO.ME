@@ -11,7 +11,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletricarapp.Adapter.CarAdapter
@@ -29,6 +32,8 @@ class CarFragment : Fragment() {
     lateinit var listaCarros: RecyclerView
     lateinit var fabCalcular: FloatingActionButton
     lateinit var progress: ProgressBar
+    lateinit var ivEmpityState:ImageView
+    lateinit var tv_no_wifi:TextView
 
 
     var carrosArray: ArrayList<Carro> = ArrayList()
@@ -43,10 +48,25 @@ class CarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkForInternet(context)
         setupView(view)
-        callService()
         setupListeners()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (checkForInternet(context)){
+
+            callService()
+        }else{
+            empityState()
+        }
+    }
+    fun empityState(){
+        progress.isVisible = false
+        listaCarros.isVisible = false
+        ivEmpityState.isVisible = true
+        tv_no_wifi.isVisible = true
     }
 
     // Função para pegar todas as views do meu layout xml
@@ -54,6 +74,8 @@ class CarFragment : Fragment() {
         listaCarros = view.findViewById(R.id.rv_listaDeCarros)
         fabCalcular = view.findViewById(R.id.fab_calcular)
         progress = view.findViewById(R.id.pb_loader)
+        ivEmpityState = view.findViewById(R.id.iv_empityState)
+        tv_no_wifi = view.findViewById(R.id.tv_no_wifi)
 
 
     }
@@ -170,8 +192,10 @@ class CarFragment : Fragment() {
                     // Adicionando cada modelo de carro dentro da lista
                     carrosArray.add(model)
                 }
-                progress.visibility = View.GONE
-                listaCarros.visibility = View.VISIBLE
+                progress.isVisible = false
+                listaCarros.isVisible = true
+                ivEmpityState.isVisible = false
+                tv_no_wifi.isVisible = false
 
                 setupList()
 

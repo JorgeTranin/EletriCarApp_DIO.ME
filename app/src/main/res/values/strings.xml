@@ -20,6 +20,7 @@
     <string name="favoritos">Favoritos</string>
     <string name="todo2">TODO</string>
     <string name="foto_calculo">Foto calculo</string>
+    <string name="internet_no_disponivel">Internet não disponivel</string>
     =======
     >>>>>>> parent of 32031db (Implementação tela de CalculoAutonomia.kt e apresentação do calculo
     para o usuario)
