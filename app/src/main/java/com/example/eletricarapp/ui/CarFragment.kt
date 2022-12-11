@@ -1,17 +1,21 @@
 package com.example.eletricarapp.ui
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.AsyncTask
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletricarapp.Adapter.CarAdapter
 import com.example.eletricarapp.R
-import com.example.eletricarapp.data.CarFactory
 import com.example.eletricarapp.domain.Carro
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
@@ -24,6 +28,8 @@ import java.net.URL
 class CarFragment : Fragment() {
     lateinit var listaCarros: RecyclerView
     lateinit var fabCalcular: FloatingActionButton
+    lateinit var progress: ProgressBar
+
 
     var carrosArray: ArrayList<Carro> = ArrayList()
 
@@ -37,8 +43,9 @@ class CarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        callService()
+        checkForInternet(context)
         setupView(view)
+        callService()
         setupListeners()
     }
 
@@ -46,11 +53,14 @@ class CarFragment : Fragment() {
     fun setupView(view: View){
         listaCarros = view.findViewById(R.id.rv_listaDeCarros)
         fabCalcular = view.findViewById(R.id.fab_calcular)
+        progress = view.findViewById(R.id.pb_loader)
+
 
     }
     //função para chamar a conecção com o arquivo json
     fun callService(){
         MyTask().execute("https://igorbag.github.io/cars-api/cars.json")
+
     }
     fun setupList(){
 
@@ -69,11 +79,34 @@ class CarFragment : Fragment() {
 
     }
 
+    // metodo que analisa se tem conecção com a internet ou não
+    fun checkForInternet(context: Context?): Boolean{
+        val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+
+            val activityNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+            return when{
+
+                activityNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activityNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                else -> false
+            }
+        }else{
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
+    }
+
     // Classe interna para sincronizar com o json que contem os dados da lista
     inner class MyTask : AsyncTask<String, String, String>() {
 
         override fun onPreExecute() {
             super.onPreExecute()
+            progress.visibility = View.VISIBLE
         }
 
         override fun doInBackground(vararg url: String?): String {
@@ -137,6 +170,9 @@ class CarFragment : Fragment() {
                     // Adicionando cada modelo de carro dentro da lista
                     carrosArray.add(model)
                 }
+                progress.visibility = View.GONE
+                listaCarros.visibility = View.VISIBLE
+
                 setupList()
 
             }catch (ex: Exception){
