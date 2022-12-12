@@ -12,6 +12,7 @@ import com.example.eletricarapp.domain.Carro
 //adaptador para preencher minha lista de carros
 class CarAdapter(private val carros: List<Carro>): RecyclerView.Adapter<CarAdapter.ViewHolder>() {
 
+    var carItemListener : (Carro) -> Unit = {}
 // metodo responsavel por dar um inflate na View
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.carro_item, parent, false)
@@ -25,7 +26,29 @@ class CarAdapter(private val carros: List<Carro>): RecyclerView.Adapter<CarAdapt
         holder.potencia.text = carros[position].potencia
         holder.recarga.text = carros[position].recarga
 
+        //set do favorito no carro
+        holder.favorito.setOnClickListener {
+            // carro na posição clicada
+            val carro = carros[position]
+            carItemListener(carro)
+            setupFavorite(carro, holder)
 
+        }
+
+    }
+
+    private fun setupFavorite(
+        carro: Carro,
+        holder: ViewHolder
+    ) {
+        // se clicar muda de estado
+        carro.isFavorite = !carro.isFavorite
+        if (carro.isFavorite) {
+            holder.favorito.setImageResource(R.drawable.ic_star_selected)
+
+        } else {
+            holder.favorito.setImageResource(R.drawable.ic_baseline_star_border_24)
+        }
     }
 
     //metodo responsavel por pegar o tamanho da lista
@@ -37,7 +60,7 @@ class CarAdapter(private val carros: List<Carro>): RecyclerView.Adapter<CarAdapt
         val bateria: TextView
         val potencia: TextView
         val recarga: TextView
-        val photo: ImageView
+        val favorito: ImageView
 
 
         init {
@@ -45,7 +68,7 @@ class CarAdapter(private val carros: List<Carro>): RecyclerView.Adapter<CarAdapt
             bateria = view.findViewById(R.id.tv_bateria_valor)
             potencia = view.findViewById(R.id.tv_potencia_valor)
             recarga = view.findViewById(R.id.tv_recarga_valor)
-            photo = view.findViewById(R.id.iv_carro1)
+            favorito = view.findViewById(R.id.iv_favorite)
         }
     }
 

@@ -130,7 +130,9 @@ class CarFragment : Fragment() {
 
         val adapter = CarAdapter(lista)
         listaCarros.adapter = adapter
+        adapter.carItemListener = { carro ->
 
+        }
     }
     //metodo para clicks
     fun setupListeners(){
@@ -229,7 +231,8 @@ class CarFragment : Fragment() {
                         bateria = bateria,
                         potencia = potencia,
                         recarga = recarga,
-                        urlPhoto = urlPhoto
+                        urlPhoto = urlPhoto,
+                        isFavorite = false
                     )
                     // Adicionando cada modelo de carro dentro da lista
                     carrosArray.add(model)

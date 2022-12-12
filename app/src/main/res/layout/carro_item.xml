@@ -136,10 +136,13 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/iv_favorite"
                 android:layout_width="50dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.768"
                 app:layout_constraintStart_toEndOf="@+id/iv_carro1"
