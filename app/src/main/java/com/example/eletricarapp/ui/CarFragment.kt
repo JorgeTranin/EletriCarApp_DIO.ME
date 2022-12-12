@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eletricarapp.Adapter.CarAdapter
 import com.example.eletricarapp.R
 import com.example.eletricarapp.data.CarsAPI
+import com.example.eletricarapp.data.local.CarRepository
 import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_BATERIA
 import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_POTENCIA
 import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_PRECO
@@ -138,8 +139,11 @@ class CarFragment : Fragment() {
 
         val adapter = CarAdapter(lista)
         listaCarros.adapter = adapter
+
+        //Quando o usuario clicar na estrela irá salvar no db o carro especifico
         adapter.carItemListener = { carro ->
 
+            val isSaved = CarRepository(requireContext()).findCarViewById(carro.id)
         }
 
 
@@ -262,17 +266,5 @@ class CarFragment : Fragment() {
 
     }
 
-    fun saveOnDatabase(carro: Carro){
-        val dbHeper = CarsDbHeper(requireContext())
-        val db = dbHeper.writableDatabase
-        val values = ContentValues().apply {
-            put(COLUMN_NAME_PRECO, carro.preco)
-            put(COLUMN_NAME_BATERIA, carro.bateria)
-            put(COLUMN_NAME_POTENCIA, carro.potencia)
-            put(COLUMN_NAME_RECARGA, carro.recarga)
-            put(COLUMN_NAME_URLPHOTO, carro.urlPhoto)
-        }
-        val newRegister = db?.insert(TABLE_NAME, null, values)
-    }
 
 }
