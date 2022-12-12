@@ -159,6 +159,62 @@ class CarRepository(private val context: Context) {
         }
     }
 
+    // metodo que deleta um carro
+    /*fun DeleteCar(id: Int) : Carro{
+        val dbHeper = CarsDbHeper(context)
+        val db = dbHeper.readableDatabase
+        // Listagem das colunas a ser exibida no resultado da query
+        val columns = arrayOf(BaseColumns._ID,
+            COLUMN_NAME_CAR_ID,
+            COLUMN_NAME_PRECO,
+            COLUMN_NAME_BATERIA
+            , COLUMN_NAME_POTENCIA,
+            COLUMN_NAME_RECARGA,
+            COLUMN_NAME_URLPHOTO)
+
+        val filter = "$COLUMN_NAME_CAR_ID = ?"
+        val filterValues = arrayOf(id.toString())
+        val cursor = db.query(
+            CarrosContract.CarEntry.TABLE_NAME, //Nome da tabela
+            columns, //Nome das Colunas a serem exibidas
+            filter, // meu filtro
+            filterValues,// valor do where, substituindo o parametro ?
+            null,
+            null,null
+        )
+        var itemId: Long = 0
+        var preco = ""
+        var bateria = ""
+        var potencia = ""
+        var recarga = ""
+        var urlfoto = ""
+
+        with(cursor){
+            while (moveToNext()){
+                itemId = getLong(getColumnIndexOrThrow(COLUMN_NAME_CAR_ID))
+                preco = getString(getColumnIndexOrThrow(COLUMN_NAME_PRECO))
+                bateria = getString(getColumnIndexOrThrow(COLUMN_NAME_BATERIA))
+                potencia = getString(getColumnIndexOrThrow(COLUMN_NAME_POTENCIA))
+                recarga = getString(getColumnIndexOrThrow(COLUMN_NAME_RECARGA))
+                urlfoto = getString(getColumnIndexOrThrow(COLUMN_NAME_URLPHOTO))
+
+            }
+        }
+
+        cursor.close()
+        return Carro(
+            id = itemId.toInt(),
+            preco = preco,
+            bateria = bateria,
+            potencia = potencia,
+            recarga = recarga,
+            urlPhoto = urlfoto,
+            isFavorite = true
+        )
+    }
+
+     */
+
     companion object{
         const val ID_NO_CAR = 0
     }
