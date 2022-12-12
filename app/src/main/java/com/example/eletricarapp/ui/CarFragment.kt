@@ -1,6 +1,5 @@
 package com.example.eletricarapp.ui
 
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -23,13 +22,6 @@ import com.example.eletricarapp.Adapter.CarAdapter
 import com.example.eletricarapp.R
 import com.example.eletricarapp.data.CarsAPI
 import com.example.eletricarapp.data.local.CarRepository
-import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_BATERIA
-import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_POTENCIA
-import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_PRECO
-import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_RECARGA
-import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_URLPHOTO
-import com.example.eletricarapp.data.local.CarrosContract.CarEntry.TABLE_NAME
-import com.example.eletricarapp.data.local.CarsDbHeper
 import com.example.eletricarapp.domain.Carro
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
@@ -184,11 +176,13 @@ class CarFragment : Fragment() {
     // Classe interna para sincronizar com o json que contem os dados da lista, metodo sem abstração
     inner class MyTask : AsyncTask<String, String, String>() {
 
+        @Deprecated("Deprecated in Java")
         override fun onPreExecute() {
             super.onPreExecute()
             progress.visibility = View.VISIBLE
         }
 
+        @Deprecated("Deprecated in Java")
         override fun doInBackground(vararg url: String?): String {
 
             var urlConnection: HttpURLConnection? = null
@@ -207,7 +201,7 @@ class CarFragment : Fragment() {
                 val responseCode = urlConnection.responseCode
                 if (responseCode == HttpURLConnection.HTTP_OK){
 
-                    var response = urlConnection.inputStream.bufferedReader().use { it.readText() }
+                    val response = urlConnection.inputStream.bufferedReader().use { it.readText() }
                     publishProgress(response)
                 }else{
                     Log.e("erro", "Serviço indisponivel no momento...")
@@ -223,6 +217,7 @@ class CarFragment : Fragment() {
             return " "
         }
 
+        @Deprecated("Deprecated in Java")
         override fun onProgressUpdate(vararg values: String?) {
             try {
                 // Leitura do array de json

@@ -20,12 +20,12 @@ class CarRepository(private val context: Context) {
             val dbHeper = CarsDbHeper(context)
             val db = dbHeper.writableDatabase
             val values = ContentValues().apply {
-                put(CarrosContract.CarEntry.COLUMN_NAME_CAR_ID, carro.id)
-                put(CarrosContract.CarEntry.COLUMN_NAME_PRECO, carro.preco)
-                put(CarrosContract.CarEntry.COLUMN_NAME_BATERIA, carro.bateria)
-                put(CarrosContract.CarEntry.COLUMN_NAME_POTENCIA, carro.potencia)
-                put(CarrosContract.CarEntry.COLUMN_NAME_RECARGA, carro.recarga)
-                put(CarrosContract.CarEntry.COLUMN_NAME_URLPHOTO, carro.urlPhoto)
+                put(COLUMN_NAME_CAR_ID, carro.id)
+                put(COLUMN_NAME_PRECO, carro.preco)
+                put(COLUMN_NAME_BATERIA, carro.bateria)
+                put(COLUMN_NAME_POTENCIA, carro.potencia)
+                put(COLUMN_NAME_RECARGA, carro.recarga)
+                put(COLUMN_NAME_URLPHOTO, carro.urlPhoto)
             }
             val inserted = db?.insert(CarrosContract.CarEntry.TABLE_NAME, null, values)
             if (inserted != null){

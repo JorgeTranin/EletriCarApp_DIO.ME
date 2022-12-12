@@ -22,6 +22,9 @@
     <string name="foto_calculo">Foto calculo</string>
     <string name="internet_no_disponivel">Internet não disponivel</string>
     <string name="saved_calc">saved_calc</string>
+    <string name="imagem_do_carro">Imagem do Carro</string>
+    <string name="imagem_do_favorito">Imagem do Favorito</string>
+    <string name="empitystate">EmpityState</string>
     =======
     >>>>>>> parent of 32031db (Implementação tela de CalculoAutonomia.kt e apresentação do calculo
     para o usuario)
