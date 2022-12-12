@@ -94,6 +94,60 @@ class CarRepository(private val context: Context) {
         )
     }
 
+
+    // Metodo para pegar todos os carro no DB para mostrar na tela favoritos
+
+    fun getAllCars(): List<Carro>{
+        val dbHeper = CarsDbHeper(context)
+        val db = dbHeper.readableDatabase
+        // Listagem das colunas a ser exibida no resultado da query
+        val columns = arrayOf(BaseColumns._ID,
+            COLUMN_NAME_CAR_ID,
+            COLUMN_NAME_PRECO,
+            COLUMN_NAME_BATERIA
+            , COLUMN_NAME_POTENCIA,
+            COLUMN_NAME_RECARGA,
+            COLUMN_NAME_URLPHOTO)
+
+
+        val cursor = db.query(
+            CarrosContract.CarEntry.TABLE_NAME, //Nome da tabela
+            columns, //Nome das Colunas a serem exibidas
+            null, // meu filtro
+            null,// valor do where, substituindo o parametro ?
+            null,
+            null,null
+        )
+        val listaDeCarros = mutableListOf<Carro>()
+
+        with(cursor){
+            while (moveToNext()){
+                val itemId = getLong(getColumnIndexOrThrow(COLUMN_NAME_CAR_ID))
+                val preco = getString(getColumnIndexOrThrow(COLUMN_NAME_PRECO))
+                val bateria = getString(getColumnIndexOrThrow(COLUMN_NAME_BATERIA))
+                val potencia = getString(getColumnIndexOrThrow(COLUMN_NAME_POTENCIA))
+                val recarga = getString(getColumnIndexOrThrow(COLUMN_NAME_RECARGA))
+                val urlfoto = getString(getColumnIndexOrThrow(COLUMN_NAME_URLPHOTO))
+
+                // Adiciona todos os itens encontrados na lista
+                listaDeCarros.add(
+                    Carro(
+                        id = itemId.toInt(),
+                        preco = preco,
+                        bateria = bateria,
+                        potencia = potencia,
+                        recarga = recarga,
+                        urlPhoto = urlfoto,
+                        isFavorite = true
+                    )
+                )
+            }
+        }
+
+        cursor.close()
+        return listaDeCarros
+    }
+
     // Metodo que irá verificar se já existe no Db as informações, para não gerar duplicatas, se não existir ele salva
     fun saveIfNotExist(carro: Carro){
         val car = findCarViewById(carro.id)
