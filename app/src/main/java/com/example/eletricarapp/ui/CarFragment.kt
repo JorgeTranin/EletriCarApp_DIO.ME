@@ -1,5 +1,6 @@
 package com.example.eletricarapp.ui
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -21,6 +22,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eletricarapp.Adapter.CarAdapter
 import com.example.eletricarapp.R
 import com.example.eletricarapp.data.CarsAPI
+import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_BATERIA
+import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_POTENCIA
+import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_PRECO
+import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_RECARGA
+import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_URLPHOTO
+import com.example.eletricarapp.data.local.CarrosContract.CarEntry.TABLE_NAME
+import com.example.eletricarapp.data.local.CarsDbHeper
 import com.example.eletricarapp.domain.Carro
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
@@ -133,6 +141,8 @@ class CarFragment : Fragment() {
         adapter.carItemListener = { carro ->
 
         }
+
+
     }
     //metodo para clicks
     fun setupListeners(){
@@ -250,6 +260,19 @@ class CarFragment : Fragment() {
         }
 
 
+    }
+
+    fun saveOnDatabase(carro: Carro){
+        val dbHeper = CarsDbHeper(requireContext())
+        val db = dbHeper.writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_NAME_PRECO, carro.preco)
+            put(COLUMN_NAME_BATERIA, carro.bateria)
+            put(COLUMN_NAME_POTENCIA, carro.potencia)
+            put(COLUMN_NAME_RECARGA, carro.recarga)
+            put(COLUMN_NAME_URLPHOTO, carro.urlPhoto)
+        }
+        val newRegister = db?.insert(TABLE_NAME, null, values)
     }
 
 }
