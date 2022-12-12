@@ -13,6 +13,8 @@ import com.example.eletricarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_U
 import com.example.eletricarapp.domain.Carro
 
 class CarRepository(private val context: Context) {
+
+    //Metodo para salvar no DB o carro
     fun save( carro: Carro) : Boolean{
         var isSaved = false
         try {
@@ -38,6 +40,7 @@ class CarRepository(private val context: Context) {
         return isSaved
     }
 
+    // metodo que pega o carro pelo ID
     fun findCarViewById(id: Int) : Carro{
         val dbHeper = CarsDbHeper(context)
         val db = dbHeper.readableDatabase
@@ -60,12 +63,49 @@ class CarRepository(private val context: Context) {
             null,
             null,null
         )
-        val itemCar = mutableListOf<Carro>()
+        var itemId: Long = 0
+        var preco = ""
+        var bateria = ""
+        var potencia = ""
+        var recarga = ""
+        var urlfoto = ""
+
         with(cursor){
             while (moveToNext()){
-                val itemId = getLong(getColumnIndexOrThrow(BaseColumns._ID))
+                itemId = getLong(getColumnIndexOrThrow(COLUMN_NAME_CAR_ID))
+                preco = getString(getColumnIndexOrThrow(COLUMN_NAME_PRECO))
+                bateria = getString(getColumnIndexOrThrow(COLUMN_NAME_BATERIA))
+                potencia = getString(getColumnIndexOrThrow(COLUMN_NAME_POTENCIA))
+                recarga = getString(getColumnIndexOrThrow(COLUMN_NAME_RECARGA))
+                urlfoto = getString(getColumnIndexOrThrow(COLUMN_NAME_URLPHOTO))
+
             }
         }
+
         cursor.close()
+        return Carro(
+            id = itemId.toInt(),
+            preco = preco,
+            bateria = bateria,
+            potencia = potencia,
+            recarga = recarga,
+            urlPhoto = urlfoto,
+            isFavorite = true
+        )
+    }
+
+    // Metodo que irá verificar se já existe no Db as informações, para não gerar duplicatas, se não existir ele salva
+    fun saveIfNotExist(carro: Carro){
+        val car = findCarViewById(carro.id)
+        if (car.id == ID_NO_CAR){
+            // chamada do metodo para salvar no Db
+            save(carro)
+        }else{
+
+        }
+    }
+
+    companion object{
+        const val ID_NO_CAR = 0
     }
 }

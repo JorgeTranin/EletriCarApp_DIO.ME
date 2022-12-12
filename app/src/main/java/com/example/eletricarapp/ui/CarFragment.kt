@@ -135,7 +135,7 @@ class CarFragment : Fragment() {
         //Quando o usuario clicar na estrela irá salvar no db o carro especifico
         adapter.carItemListener = { carro ->
 
-            val isSaved = CarRepository(requireContext()).findCarViewById(carro.id)
+            val isSaved = CarRepository(requireContext()).saveIfNotExist(carro)
         }
 
 
