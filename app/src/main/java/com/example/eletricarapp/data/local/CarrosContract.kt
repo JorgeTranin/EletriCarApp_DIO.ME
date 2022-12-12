@@ -10,6 +10,7 @@ object CarrosContract {
     object CarEntry : BaseColumns{
         //NOME DA TAbela em seguida o nome das colunas que iram ser salvas
         const val TABLE_NAME = "Car"
+        const val COLUMN_NAME_CAR_ID = "car_id"
         const val COLUMN_NAME_PRECO = "preco"
         const val COLUMN_NAME_BATERIA = "bateria"
         const val COLUMN_NAME_POTENCIA = "potencia"
@@ -20,6 +21,7 @@ object CarrosContract {
     // Estrutura do banco de dados
     const val TABLE_CAR = "CREATE TABLE ${CarEntry.TABLE_NAME} (" +
             "${BaseColumns._ID} INTEGER PRIMARY KEY," +
+            "${CarEntry.COLUMN_NAME_CAR_ID} TEXT," +
             "${CarEntry.COLUMN_NAME_PRECO} TEXT," +
             "${CarEntry.COLUMN_NAME_BATERIA} TEXT," +
             "${CarEntry.COLUMN_NAME_POTENCIA} TEXT," +
