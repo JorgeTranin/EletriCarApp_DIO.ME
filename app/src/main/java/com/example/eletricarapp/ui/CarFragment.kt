@@ -38,7 +38,6 @@ import java.net.URL
 // fragmento para retornar o layout que for preciso
 class CarFragment : Fragment() {
     lateinit var listaCarros: RecyclerView
-    lateinit var fabCalcular: FloatingActionButton
     lateinit var progress: ProgressBar
     lateinit var ivEmpityState:ImageView
     lateinit var tv_no_wifi:TextView
@@ -59,7 +58,6 @@ class CarFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRetrofit()
         setupView(view)
-        setupListeners()
 
     }
 
@@ -115,7 +113,6 @@ class CarFragment : Fragment() {
     // Função para pegar todas as views do meu layout xml
     fun setupView(view: View){
         listaCarros = view.findViewById(R.id.rv_listaDeCarros)
-        fabCalcular = view.findViewById(R.id.fab_calcular)
         progress = view.findViewById(R.id.pb_loader)
         ivEmpityState = view.findViewById(R.id.iv_empityState)
         tv_no_wifi = view.findViewById(R.id.tv_no_wifi)
@@ -141,15 +138,7 @@ class CarFragment : Fragment() {
 
     }
     //metodo para clicks
-    fun setupListeners(){
-        //Click no botão calcular e navegação para a tela de calculo
-        fabCalcular.setOnClickListener {
 
-            val intent = Intent(context, CalculoAutonomia::class.java)
-            startActivity(intent)
-        }
-
-    }
 
     // metodo que analisa se tem conecção com a internet ou não
     fun checkForInternet(context: Context?): Boolean{
