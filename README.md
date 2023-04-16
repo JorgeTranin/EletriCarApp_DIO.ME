@@ -13,12 +13,13 @@ Esta é a documentação oficial do aplicativo [Eletric Car], um aplicativo [sob
 
 O aplicativo foi desenvolvido utilizando as seguintes tecnologias:
 
-- [Android Studio](link para a tecnologia)
-- [Kotlin](link para a tecnologia)
+- Android Studio
+- Kotlin
 - [Retrofit](https://square.github.io/retrofit/)
 - [Navigation Controller](https://developer.android.com/guide/navigation/navigation-principles?hl=pt-br)
-- [Consumo de API JSON](link para a tecnologia 3)
-- [GitHub Pages](link para a tecnologia 3)
+- Consumo de API JSON
+- [GitHub Pages](https://pages.github.com)
+
 
 ## Instalação
 
