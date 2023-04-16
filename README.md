@@ -7,7 +7,7 @@
 Esta é a documentação oficial do aplicativo [Eletric Car], um aplicativo [sobre carros eletricos e calculos de autônomia de carros].
 
 ## Screenshots
-<img src="images/Tela1.png" width=25%>   <img src="images/Tela2.png" width=25%>   <img src="image/Tela3.png" width=25%>
+<img src="/images/Tela1.png" width=25%>   <img src="/images/Tela2.png" width=25%>  <img src="/images/Tela3.png" width=25%>
 
 ## Tecnologias utilizadas
 
